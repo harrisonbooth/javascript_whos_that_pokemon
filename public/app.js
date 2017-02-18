@@ -15,10 +15,10 @@ var makeRequest = function(url, callback){
 };
 
 var setUpPage = function(){
-  var score = JSON.parse(localStorage.getItem('score'));
-  var total = JSON.parse(localStorage.getItem('total'));
-  if(score === null) score = 0;
-  if(total === null) total = 0;
+  var score = 0;
+  var total = 0;
+  localStorage.setItem('score', score);
+  localStorage.setItem('total', total);
   var scoreDisplay = document.querySelector('#score');
   var totalDisplay = document.querySelector('#total');
   scoreDisplay.innerText = score;
@@ -41,6 +41,7 @@ var populateSelect = function(){
     addSelectOption(pokemon, pokemonDataList);
   });
 
+  loadPokemonQuestion();
 };
 
 var addSelectOption = function(item, list){
@@ -66,6 +67,9 @@ var loadPokemonQuestion = function(){
 };
 
 var displaySprites = function(){
+  if(this.status !== 200){
+    loadPokemonQuestion();
+  }
   var jsonData = this.responseText;
   var pokemonSprites = JSON.parse(jsonData).sprites;
   var pokemonSprite = pokemonSprites.front_default;
@@ -83,12 +87,17 @@ var createDisplay = function(spriteUrl){
   image.onload = function(){if(oldSprite !== null){
     container.removeChild(oldSprite);
   }}
-  
+
   appendElements(image, container);
+  var pokemonInput = document.querySelector('#pokemon-guess-input');
+  var submitButton = document.querySelector('#pokemon-guess-submit')
+  pokemonInput.disabled = false;
+  submitButton.disabled = false;
 };
 
 var makeGuess = function(){
   var pokemonInput = document.querySelector('#pokemon-guess-input');
+  var submitButton = document.querySelector('#pokemon-guess-submit')
   var guess = pokemonInput.value;
   var answer = localStorage.getItem('currentPokemon');
   var correct = false;
@@ -109,15 +118,27 @@ var makeGuess = function(){
   var totalDisplay = document.querySelector('#total');
   scoreDisplay.innerText = score;
   totalDisplay.innerText = total;
+  pokemonInput.disabled = true;
+  submitButton.disabled = true;
   loadPokemonQuestion();
 };
 
-var app = function(){
-  setUpPage();
-  loadPokemonQuestion();
-
+var handleInputKeyup = function(event){
   var submitButton = document.querySelector('#pokemon-guess-submit');
+  if(event.keyCode === 13){
+    submitButton.click();
+  }
+};
+
+var app = function(){
+  var submitButton = document.querySelector('#pokemon-guess-submit');
+  submitButton.disabled = true;
   submitButton.onclick = makeGuess;
+  var pokemonInput = document.querySelector('#pokemon-guess-input');
+  pokemonInput.disabled = true;
+  pokemonInput.onkeyup = handleInputKeyup;
+
+  setUpPage();
 };
 
 window.onload = app;
