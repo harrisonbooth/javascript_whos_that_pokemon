@@ -27,16 +27,16 @@ var populateSelect = function(){
   var pokemonObject = JSON.parse(jsonData);
   var pokemonList = pokemonObject.results;
   localStorage.setItem('pokemonArray', JSON.stringify(pokemonList));
-  var pokemonSelect = document.querySelector('#pokemon-guess-select')
+  var pokemonDataList = document.querySelector('#pokemon-list')
   // console.log(pokemonList);
 
   pokemonList.forEach(function(pokemon){
-    addSelectOption(pokemon, pokemonSelect);
+    addSelectOption(pokemon, pokemonDataList);
   });
 
 };
 
-var addSelectOption = function(item, select){
+var addSelectOption = function(item, list){
   var option = document.createElement('option');
   var name = item.name;
   var formattedName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -44,7 +44,7 @@ var addSelectOption = function(item, select){
   option.value = name;
   option.innerText = formattedName;
 
-  appendElements(option, select);
+  appendElements(option, list);
 };
 
 var loadPokemonQuestion = function(){
@@ -80,8 +80,8 @@ var createDisplay = function(spriteUrl){
 };
 
 var makeGuess = function(){
-  var pokemonSelect = document.querySelector('#pokemon-guess-select');
-  var guess = pokemonSelect.value;
+  var pokemonInput = document.querySelector('#pokemon-guess-input');
+  var guess = pokemonInput.value;
   var answer = localStorage.getItem('currentPokemon');
   var correct = false;
   if(guess === answer) correct = true;
@@ -91,8 +91,7 @@ var makeGuess = function(){
   if(correct === true) score += 1;
   localStorage.setItem('score', score);
 
-  var defaultOption = document.querySelector('#default-select-option');
-  defaultOption.selected = true;
+  pokemonInput.value = "";
   loadPokemonQuestion();
 };
 
