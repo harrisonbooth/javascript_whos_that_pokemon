@@ -33,6 +33,10 @@ h1 {
   text-align: center;
 }
 
+#main-wrapper * {
+  visibility: hidden;
+}
+
 #whos-that-pokemon-container {
   margin-top: 58px
 }
