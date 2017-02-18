@@ -15,6 +15,7 @@ var makeRequest = function(url, callback){
 };
 
 var setUpPage = function(){
+
   var score = 0;
   var total = 0;
   localStorage.setItem('score', score);
@@ -23,6 +24,8 @@ var setUpPage = function(){
   var totalDisplay = document.querySelector('#total');
   scoreDisplay.innerText = score;
   totalDisplay.innerText = total;
+
+
   var url = "https://pokeapi.co/api/v2/pokemon/?limit=1000";
   makeRequest(url, populateSelect);
 };
@@ -82,7 +85,7 @@ var createDisplay = function(spriteUrl){
   var oldSprite = document.querySelector('#whos-that-pokemon-container *');
   var image = document.createElement('img');
   image.src = spriteUrl;
-  image.class = "pokemon-image";
+  // image.classList.add("pokemon-image");
 
   image.onload = function(){if(oldSprite !== null){
     container.removeChild(oldSprite);
@@ -138,9 +141,12 @@ var app = function(){
   pokemonInput.disabled = true;
   pokemonInput.onkeyup = handleInputKeyup;
 
+
+  var placeholder = document.querySelector('#whos-that-pokemon-container div');
+  console.log(placeholder);
   setUpPage();
 };
 
 window.onload = app;
 
-//http://pokeapi.co/api/v2/pokemon/number/
+//http://pokeapi.co/api/v2/pokemon/name/
