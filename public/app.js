@@ -15,7 +15,14 @@ var makeRequest = function(url, callback){
 };
 
 var setUpPage = function(){
-  var score = localStorage.getItem('score') || 0;
+  var score = JSON.parse(localStorage.getItem('score'));
+  var total = JSON.parse(localStorage.getItem('total'));
+  if(score === null) score = 0;
+  if(total === null) total = 0;
+  var scoreDisplay = document.querySelector('#score');
+  var totalDisplay = document.querySelector('#total');
+  scoreDisplay.innerText = score;
+  totalDisplay.innerText = total;
   var url = "https://pokeapi.co/api/v2/pokemon/?limit=1000";
   makeRequest(url, populateSelect);
 };
@@ -69,13 +76,14 @@ var displaySprites = function(){
 var createDisplay = function(spriteUrl){
   var container = document.querySelector('#whos-that-pokemon-container');
   var oldSprite = document.querySelector('#whos-that-pokemon-container *');
-  if(oldSprite !== null){
-    container.removeChild(oldSprite);
-  }
   var image = document.createElement('img');
   image.src = spriteUrl;
   image.class = "pokemon-image";
 
+  image.onload = function(){if(oldSprite !== null){
+    container.removeChild(oldSprite);
+  }}
+  
   appendElements(image, container);
 };
 
@@ -87,11 +95,20 @@ var makeGuess = function(){
   if(guess === answer) correct = true;
 
   var score = JSON.parse(localStorage.getItem('score'));
+  var total = JSON.parse(localStorage.getItem('total'));
   if(score === null) score = 0;
-  if(correct === true) score += 1;
+  if(total === null) total = 0;
+  if(correct === true) score++;
+  total++;
   localStorage.setItem('score', score);
+  localStorage.setItem('total', total);
 
   pokemonInput.value = "";
+
+  var scoreDisplay = document.querySelector('#score');
+  var totalDisplay = document.querySelector('#total');
+  scoreDisplay.innerText = score;
+  totalDisplay.innerText = total;
   loadPokemonQuestion();
 };
 

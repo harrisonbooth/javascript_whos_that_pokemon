@@ -1,4 +1,56 @@
+body {
+  text-align: center;
+  background-image: url("http://wallppr.net/wp-content/uploads/2016/11/Pokemon-wallpaper.jpg");
+  background-size: contain;
+}
+
+h1 {
+  font-family: sans-serif;
+  background-color: ivory;
+  width: 400px;
+  padding: 3px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
 .pokemon-image {
   height: 300px;
   width: 300px
+}
+
+#main-wrapper {
+  background-image: url("http://img06.deviantart.net/4238/i/2012/295/e/e/pokedex_vector_style_by_cristopheros-d5imu6t.png");
+  display: inline-block;
+  width: 500px;
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
+}
+
+#whos-that-pokemon-container {
+  margin-top: 58px
+}
+
+#guessing-input-container {
+  margin-top: 80px
+}
+
+#pokemon-guess-input {
+  display: block;
+  margin: 0 auto;
+}
+
+#score-container {
+  font-family: monospace;
+  margin-top: 5px
+}
+
+#score-container h2 {
+  margin-bottom: 5px
+}
+
+#score-container p {
+  display: inline;
 }
