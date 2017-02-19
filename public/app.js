@@ -15,7 +15,6 @@ var makeRequest = function(url, callback){
 };
 
 var setUpPage = function(){
-
   var score = 0;
   var total = 0;
   localStorage.setItem('score', score);
@@ -59,6 +58,8 @@ var addSelectOption = function(item, list){
 };
 
 var loadPokemonQuestion = function(){
+  var mainHeading = document.querySelector('h1');
+  mainHeading.innerText = "Loading...";
   var pokemonList = JSON.parse(localStorage.getItem('pokemonArray'));
   // console.log(pokemonList.length);
   var randomIndex = (Math.random() * (pokemonList.length - 0)).toFixed(0);
@@ -95,6 +96,8 @@ var createDisplay = function(spriteUrl){
     });
   }}
 
+  var mainHeading = document.querySelector('h1');
+  mainHeading.innerText = "Who's that pokemon?"
   appendElements(image, container);
   var pokemonInput = document.querySelector('#pokemon-guess-input');
   var submitButton = document.querySelector('#pokemon-guess-submit')
