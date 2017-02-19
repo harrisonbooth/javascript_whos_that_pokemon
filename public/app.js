@@ -89,16 +89,16 @@ var createDisplay = function(spriteUrl){
 
   image.onload = function(){if(oldSprite !== null){
     container.removeChild(oldSprite);
+    var gameUi = document.querySelectorAll('#main-wrapper *');
+    gameUi.forEach(function(element){
+      element.style.visibility = 'visible'
+    });
   }}
 
   appendElements(image, container);
   var pokemonInput = document.querySelector('#pokemon-guess-input');
   var submitButton = document.querySelector('#pokemon-guess-submit')
 
-  var gameUi = document.querySelectorAll('#main-wrapper *');
-  gameUi.forEach(function(element){
-    element.style.visibility = 'visible'
-  });
 
   pokemonInput.disabled = false;
   submitButton.disabled = false;
