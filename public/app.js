@@ -102,9 +102,9 @@ var createDisplay = function(spriteUrl){
   var pokemonInput = document.querySelector('#pokemon-guess-input');
   var submitButton = document.querySelector('#pokemon-guess-submit')
 
-
   pokemonInput.disabled = false;
   submitButton.disabled = false;
+  pokemonInput.focus();
 };
 
 var makeGuess = function(){
