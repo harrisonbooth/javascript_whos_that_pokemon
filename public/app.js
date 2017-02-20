@@ -25,7 +25,7 @@ var setUpPage = function(){
   totalDisplay.innerText = total;
 
 
-  var url = "https://pokeapi.co/api/v2/pokemon/?limit=1000";
+  var url = "https://pokeapi.co/api/v2/pokemon/?limit=10000";
   makeRequest(url, populateSelect);
 };
 
