@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-image: url("http://wallppr.net/wp-content/uploads/2016/11/Pokemon-wallpaper.jpg");
+  background-image: url("./assets/pokemon_background.jpeg");
   background-size: cover;
 }
 
@@ -23,7 +23,7 @@ h1 {
 }
 
 #main-wrapper {
-  background-image: url("http://img06.deviantart.net/4238/i/2012/295/e/e/pokedex_vector_style_by_cristopheros-d5imu6t.png");
+  background-image: url("./assets/pokedex_vector.png");
   display: inline-block;
   width: 500px;
   height: 400px;
