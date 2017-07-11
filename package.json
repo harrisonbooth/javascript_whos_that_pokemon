@@ -2,14 +2,13 @@
   "name": "whos_that_pokemon",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "webpack -w"
   },
-  "author": "",
+  "author": "Harrison Booth",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.14.1"
+  "devDependencies": {
+    "webpack": "^3.1.0"
   }
 }
